@@ -397,7 +397,7 @@
                 <div class="col">
                     <img src="https://i.postimg.cc/3xKzZcSF/New-Diagram-updated-ones.png" alt="Hardware Architecture">
                     <h3>Smart Hat Architecture</h3>
-                    <p>The hardware design balances processing power, multi-modal sensing, and energy efficiency for reliable day-and-night assistive use.</p>
+                    <p>The Raspberry Pi 5-based Smart Hat functions as a wearable edge device, integrating sensors (ultrasonic for obstacle detection/distance, IMX219 camera, GPS for location tracking) and an IMX500 processor for on-device AI/ML inference using MobileNet V2. It performs real-time local processing for object detection, proximity alerts, and communication, while also capturing voice commands for control. A companion web app (mobile-friendly, cross-platform) uses the Web Speech API for voice interaction, allowing system control (start/stop, wake-word), log review/download, and offering role-based permissions. The system syncs critical data – including GPS logs, battery status, detection events, videos, and system logs – to Firebase (Realtime Database/Firestore and Cloud Storage). This cloud integration powers a live dashboard displaying system health, object logs, and GPS location, enabling remote monitoring and data access. Essentially, it's a navigation-assistance device leveraging edge AI for immediate responsiveness and cloud connectivity for data analytics and remote management.</p>
                 </div>
                 <div class="col">
                     <h3>Processing Unit</h3>
