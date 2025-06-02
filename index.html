@@ -423,8 +423,12 @@
                     
                     <h3>Context-Aware Filtering</h3>
                     <p>Three operational modes: Home (filters indoor objects), Public (highlights people/vehicles), and Custom (user-defined). The system evaluates detection size, position, and danger score for intelligent alerts.</p>
+
+                    <h3>Object-Detection</h3>
+                    <p>The image detection results identify four people with high confidence levels: one at 98.0%, another at 86.2%, a third at 84.0%, and the fourth at 73.0%.</p>
                     
                     <h3>Voice Feedback System</h3>
+                    <img src="https://files.fm/u/gx83c27mah" alt="Voice Feedback System">
                     <p>Browser-based text-to-speech via Web Speech API and SocketIO delivers clear, low-latency voice output. Temporal filtering prevents alert fatigue by suppressing identical messages within 4 seconds.</p>
                 </div>
                 <div class="col">
@@ -598,167 +602,63 @@
 
         // Charts
         document.addEventListener('DOMContentLoaded', function() {
-            // Accuracy chart (bar)
-            const accuracyCtx = document.getElementById('accuracyChart').getContext('2d');
-            new Chart(accuracyCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Object Detection', 'Directional Accuracy', 'Obstacle Detection'],
-                    datasets: [{
-                        label: 'Accuracy (%)',
-                        data: [83, 95, 92.2],
-                        backgroundColor: [
-                            'rgba(255, 123, 0, 0.7)',
-                            'rgba(0, 86, 179, 0.7)',
-                            'rgba(50, 168, 82, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 123, 0, 1)',
-                            'rgba(0, 86, 179, 1)',
-                            'rgba(50, 168, 82, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#fff'
-                            }
-                        },
-                        title: {
-                            display: true,
-                            text: 'Detection Accuracy Metrics',
-                            color: '#fff',
-                            font: {
-                                size: 16
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                color: '#fff'
-                            },
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                color: '#fff'
-                            },
-                            grid: {
-                                display: false
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Latency chart (line)
-            const latencyCtx = document.getElementById('latencyChart').getContext('2d');
-            new Chart(latencyCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Object Detection', 'Ultrasonic', 'Voice Feedback', 'Total System'],
-                    datasets: [{
-                        label: 'Latency (ms)',
-                        data: [230, 80, 100, 410],
-                        fill: false,
-                        borderColor: 'rgba(255, 123, 0, 1)',
-                        tension: 0.1,
-                        pointBackgroundColor: '#fff',
-                        pointBorderColor: 'rgba(255, 123, 0, 1)',
-                        pointRadius: 5
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#fff'
-                            }
-                        },
-                        title: {
-                            display: true,
-                            text: 'System Latency Performance',
-                            color: '#fff',
-                            font: {
-                                size: 16
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                color: '#fff'
-                            },
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                color: '#fff'
-                            },
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            }
-                        }
-                    }
-                }
-            });
-
             // Battery chart (pie)
-            const batteryCtx = document.getElementById('batteryChart').getContext('2d');
-            new Chart(batteryCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Camera Usage', 'AI Processing', 'Sensors', 'Web Interface'],
-                    datasets: [{
-                        label: 'Power Consumption',
-                        data: [35, 30, 20, 15],
-                        backgroundColor: [
-                            'rgba(255, 123, 0, 0.7)',
-                            'rgba(0, 86, 179, 0.7)',
-                            'rgba(50, 168, 82, 0.7)',
-                            'rgba(220, 53, 69, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 123, 0, 1)',
-                            'rgba(0, 86, 179, 1)',
-                            'rgba(50, 168, 82, 1)',
-                            'rgba(220, 53, 69, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
+    const batteryCtx = document.getElementById('batteryChart').getContext('2d');
+    new Chart(batteryCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Camera Usage', 'AI Processing', 'Sensors', 'Web Interface'],
+            datasets: [{
+                label: 'Power Consumption',
+                data: [35, 30, 20, 15],
+                backgroundColor: [
+                    'rgba(255, 123, 0, 0.7)',
+                    'rgba(0, 86, 179, 0.7)',
+                    'rgba(50, 168, 82, 0.7)',
+                    'rgba(220, 53, 69, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(255, 123, 0, 1)',
+                    'rgba(0, 86, 179, 1)',
+                    'rgba(50, 168, 82, 1)',
+                    'rgba(220, 53, 69, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        color: '#fff'
+                    }
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: {
-                                color: '#fff'
-                            }
-                        },
-                        title: {
-                            display: true,
-                            text: 'Power Consumption Distribution',
-                            color: '#fff',
-                            font: {
-                                size: 16
-                            }
+                title: {
+                    display: true,
+                    text: 'Power Consumption Distribution',
+                    color: '#fff',
+                    font: {
+                        size: 16
+                    }
+                },
+                datalabels: {
+                    color: '#fff',
+                    formatter: (value, context) => {
+                        const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        const percentage = ((value / total) * 100).toFixed(1);
+                        return `${percentage}%`;
+                    },
+                    font: {
+                        weight: 'bold'
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
                         }
                     }
                 }
